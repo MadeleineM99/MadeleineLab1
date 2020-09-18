@@ -1,25 +1,97 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadeleineLab1", "MadeleineLab1\MadeleineLab1.csproj", "{6C8C4653-07C7-4114-A056-7A6EBA497D51}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6C8C4653-07C7-4114-A056-7A6EBA497D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C8C4653-07C7-4114-A056-7A6EBA497D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C8C4653-07C7-4114-A056-7A6EBA497D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C8C4653-07C7-4114-A056-7A6EBA497D51}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8F44D59F-6A3F-4B8C-93C5-9840860EA3CC}
-	EndGlobalSection
-EndGlobal
+using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
+
+
+namespace lab_1
+{
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hej fredrik");
+            Console.WriteLine("skriv en string!");
+
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+
+
+            string input = Console.ReadLine();
+            long sum = 0;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            string[] inputArray = { input };
+            int number;
+            List<string> lizt = new List<string>();
+
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                bool m = Int32.TryParse(input[i].ToString(), out number);
+                if (m == true)
+                {
+                    int p = 1;
+                    while (true)
+                    {
+                        try
+                        {
+
+                            int delinput = input[i + p];
+                            bool n = Int32.TryParse(input[i + p].ToString(), out number);
+
+                            if (input[i] == delinput)
+                            {
+                                p++;
+
+
+                                for (int j = 0; j < input.Length; j++)
+                                {
+                                    if (j >= i && j < i + p)
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Red;
+                                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+
+                                        Console.Write(input[j]);
+                                        sum += sum + long.Parse(input[j].ToString());
+
+
+                                    }
+                                    else
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.Write(input[j]);
+                                    }
+
+                                }
+                                Console.WriteLine();
+
+                                break;
+                            }
+                            if (n == true)
+                            {
+                                p++;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        catch
+                        {
+                            break;
+                        }
+
+                    }
+                }
+            }
+            Console.WriteLine($"Din summa av alla delstängar är :  {sum}");
+            Console.ReadKey();
+
+
+        }
+
+
+
+    }
+}
